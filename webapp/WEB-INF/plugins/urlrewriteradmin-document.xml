@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<plug-in>
+    
+    <!-- Plugin Informations -->
+    <name>urlrewriteradmin-document</name>
+    <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
+    <version>1.0.0</version>
+    <documentation/>
+    <installation/>
+    <changes/>
+    <user-guide/>
+    <description>module.urlrewriteradmin.document.module.description</description>
+    <provider>module.urlrewriteradmin.document.module.provider</provider>
+    <provider-url>http://lutece.paris.fr</provider-url>
+    <icon-url>images/admin/skin/plugins/urlrewriteradmin/urlrewriteradmin.png</icon-url>
+    <copyright>Copyright 2001-2012 Mairie de Paris</copyright>
+    <core-version-dependency>
+		<min-core-version>2.3.0</min-core-version>
+		<max-core-version/>	
+	</core-version-dependency>
+    <db-pool-required>0</db-pool-required>
+    
+</plug-in>
