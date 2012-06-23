@@ -41,10 +41,14 @@ import fr.paris.lutece.plugins.urlrewriteradmin.business.UrlRewriterRule;
 import fr.paris.lutece.plugins.urlrewriteradmin.service.AliasGenerator;
 import fr.paris.lutece.plugins.urlrewriteradmin.service.AliasGeneratorOptions;
 import fr.paris.lutece.plugins.urlrewriteradmin.service.AliasGeneratorUtils;
+
 import java.sql.Date;
+
 import java.text.MessageFormat;
+
 import java.util.Collection;
 import java.util.List;
+
 
 /**
  * Document Alias Generator
@@ -54,30 +58,32 @@ public class DocumentAliasGenerator implements AliasGenerator
     private static final String GENERATOR_NAME = "Document Alias Generator";
     private static final String TECHNICAL_URL = "/jsp/site/Portal.jsp?document_id={0}&portlet_id={1}";
     private static final String SLASH = "/";
-    
+
     @Override
-    public String generate(List<UrlRewriterRule> list, AliasGeneratorOptions options)
+    public String generate( List<UrlRewriterRule> list, AliasGeneratorOptions options )
     {
         int nStatus = DocumentPublication.STATUS_PUBLISHED;
         Date date = new Date( 0 );
-        Collection<DocumentPublication> pub = DocumentPublicationHome.findSinceDatePublishingAndStatus( date, nStatus);
-        for( DocumentPublication p : pub )
+        Collection<DocumentPublication> pub = DocumentPublicationHome.findSinceDatePublishingAndStatus( date, nStatus );
+
+        for ( DocumentPublication p : pub )
         {
-            Document document = DocumentHome.findByPrimaryKey( p.getDocumentId() );
-            UrlRewriterRule rule = new UrlRewriterRule();
-            rule.setRuleFrom( SLASH + AliasGeneratorUtils.convertToAlias( document.getTitle() ));
-            Object[] args = { p.getDocumentId() , p.getPortletId() }; 
-            String strTechnicalUrl = MessageFormat.format(TECHNICAL_URL, args );
+            Document document = DocumentHome.findByPrimaryKey( p.getDocumentId(  ) );
+            UrlRewriterRule rule = new UrlRewriterRule(  );
+            rule.setRuleFrom( SLASH + AliasGeneratorUtils.convertToAlias( document.getTitle(  ) ) );
+
+            Object[] args = { p.getDocumentId(  ), p.getPortletId(  ) };
+            String strTechnicalUrl = MessageFormat.format( TECHNICAL_URL, args );
             rule.setRuleTo( strTechnicalUrl );
-            list.add(rule);
+            list.add( rule );
         }
+
         return "";
     }
 
     @Override
-    public String getName()
+    public String getName(  )
     {
         return GENERATOR_NAME;
     }
-    
 }
